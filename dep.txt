@@ -1,0 +1,6 @@
+nodemon
+dotenv
+express
+mongoose
+body-parser
+type NUL > FILE
