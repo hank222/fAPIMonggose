@@ -1,0 +1,15 @@
+version: '3.9'
+
+services:
+
+  mongo:
+    image: mongo:latest
+    container_name: mongoDB
+    restart: always
+    environment:
+      MONGO_INITDB_ROOT_USERNAME: ${USSER}
+      MONGO_INITDB_ROOT_PASSWORD: ${PASS}
+    volumes:
+      - ./mongo:/data/db
+    ports:
+      - "27017:27017"

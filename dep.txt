@@ -4,3 +4,8 @@ express
 mongoose
 body-parser
 type NUL > FILE
+
+
+
+
+docker compose up -d
