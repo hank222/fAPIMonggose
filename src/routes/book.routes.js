@@ -38,10 +38,7 @@ router.get('/',async (req,res)=>{
     try{
         const reportes=await Report.find({});
         console.log('GET ALL', reportes)
-        if(reportes.length===0)
-            {
-                res.status(204).json([])
-            }
+        
             res.json(reportes)
     }catch(error){
         res.status(500).json({message:error.message})

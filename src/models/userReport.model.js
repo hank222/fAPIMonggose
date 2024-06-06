@@ -1,8 +1,12 @@
 import mongoose from "mongoose";
-
+import {reportSchema} from './report.model.js'
 const userReportSchema=new mongoose.Schema({
-    username:String,
-    reports:[String]
+    username:{
+        type:String,
+        required: true,
+        unique:true
+      },
+    reports:[reportSchema]
 })
 
-export const UserReports=new mongoose.model('userReports',userReportSchema);
+export const UserReport= mongoose.model('userReports',userReportSchema);

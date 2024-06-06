@@ -1,0 +1,24 @@
+db.userreports.find().pretty( )
+db.reports.find().pretty()
+db.userreports.find().pretty( )
+db.reports.find().pretty()
+db.userreports.find().pretty( )
+db.reports.find().pretty()
+db.userreports.find().pretty( )
+db.reports
+db.reports.find()
+db.users.find()
+db.userreports.find()
+db.users.find()
+db.reports.find()
+reports
+show collections
+use basededatos
+show dbs
+listDatabases
+clear
+show collections
+listDatabases
+show dbs
+show
+showdb

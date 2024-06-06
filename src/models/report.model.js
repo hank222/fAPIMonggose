@@ -1,6 +1,6 @@
 import mongoose  from "mongoose";
 
-const bookSchema=new mongoose.Schema({
+const reportSchema=new mongoose.Schema({
     idM:{
       type:String,
       required: true,
@@ -32,4 +32,6 @@ const bookSchema=new mongoose.Schema({
       }    
 })
 
-export const Report=mongoose.model('report', bookSchema)
+export const Report=mongoose.model('report', reportSchema)
+
+export { reportSchema };
