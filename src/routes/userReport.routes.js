@@ -37,10 +37,10 @@ const getUserReports=async (req,res,next)=>{
 
 const getUserReportyByUserName=async (req,res,next)=>{
     let userReport;
-    const {username}=req?.body
+    const {username}=req.params
     
     try{
-        userReport=UserReport.find({username:username})
+        userReport=await UserReport.find({username:username})
         if(!userReport){
             return res.status(404).json({
                 message:"El usuario no fue encontrado"
@@ -56,6 +56,11 @@ const getUserReportyByUserName=async (req,res,next)=>{
 }
 
 router.get('/:id',getUserReports,async (req,res)=>{
+    console.log(res.userReport)
+    res.json(res.userReport);
+})
+router.get('/username/:username',getUserReportyByUserName,async (req,res)=>{
+    console.log(res.userReport)
     res.json(res.userReport);
 })
 
@@ -74,12 +79,13 @@ router.get('/',async (req,res)=>{
     }
 })
 
-router.post('/:username',async (req,res)=>{
+router.put('/:username',getUserReportyByUserName,async (req,res)=>{
     const {_id,idM,reportName, client,    
         service, status,    
         bases, periodicty} =req?.body;
     const {username}=req.params;
-    
+    let userReport;
+
     const reporte = new Report(
         {
             _id,
@@ -92,12 +98,21 @@ router.post('/:username',async (req,res)=>{
             periodicty   
         }
     )    
-    const userReport=new UserReport({
-        username:username,
-        reports:reporte
-    })
+    console.log(res.userReport)
+    if(!res.userReport)
+    {
+        userReport=new UserReport({
+                username:username,
+                reports:reporte
+            })
+    }
+    else{
+        userReport=res.userReport;
+        const reportes=userReport[0].reports
+        reportes.push(reporte)
+    }
     try{
-        const newUserReport=await userReport.save();
+        const newUserReport=await userReport[0].save();
         res.json(newUserReport)
     }catch(error){
         res.status(500).json({
